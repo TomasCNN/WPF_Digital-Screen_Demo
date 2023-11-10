@@ -10,7 +10,8 @@
         FontFamily="Microsoft YaHei" FontWeight="ExtraLight" ResizeMode="CanResizeWithGrip"
         Title="数字工厂监控看板"  Height="700" Width="1150">
         
-    
+        
+        Title="MainWindow" Height="450" Width="800">
     <Grid>
         
     </Grid>
