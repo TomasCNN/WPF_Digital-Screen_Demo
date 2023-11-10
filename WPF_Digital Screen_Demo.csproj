@@ -86,6 +86,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Assets\iconfont.json" />
+    <Resource Include="Assets\iconfont.ttf" />
+    <None Include="Assets\iconfont.woff" />
+    <None Include="Assets\iconfont.woff2" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -95,11 +99,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\" />
     <Folder Include="Base\" />
     <Folder Include="Controls\" />
     <Folder Include="Medols\" />
     <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\demo.css" />
+    <Content Include="Assets\demo_index.html" />
+    <Content Include="Assets\iconfont.css" />
+    <Content Include="Assets\iconfont.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
