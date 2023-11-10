@@ -8,9 +8,102 @@
         
         WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen"
         FontFamily="Microsoft YaHei" FontWeight="ExtraLight" ResizeMode="CanResizeWithGrip"
-        Title="数字工厂监控看板"  Height="700" Width="1150">
-        
-    
+        Title="数字工厂监控看板"  Height="700" Width="1100">
+    <Window.Background>
+        <RadialGradientBrush GradientOrigin="0.5,-0.8" Center="0.5,0"
+                             RadiusX="0.7" RadiusY="0.8">
+            <GradientStop Color="#A02B40" Offset="0"/>
+            <GradientStop Color="#08113C" Offset="1"/>
+        </RadialGradientBrush>
+    </Window.Background>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.RowSpan="2" VerticalAlignment="Top"
+                Height="90" Margin="-3,-12,-3,0">
+            <Border.Background>
+                <VisualBrush Stretch="Fill">
+     
+                </VisualBrush>
+            </Border.Background>
+            
+            <Path Data=" M0,0 
+                  L0,30 400,30
+                  A15,10,0,0,1,414,35
+                  L425,51
+                  A10,10,0,0,0,434,55
+                  L666,55
+                  A10,10,0,0,0,675,51
+                  L686,35
+                  A15,10,0,0,1,700,30
+                  L1100,30 1100,0
+                  z" StrokeThickness="1"
+                  Stretch="Fill">
+                           
+                <Path.Fill>
+                    <RadialGradientBrush RadiusX="0.6" RadiusY="1.8"
+                                         Center="0.5,1.8"
+                                         GradientOrigin="0.5,2">
+                        <GradientStop Color="#2BB6FE" Offset="0"/>
+                        <GradientStop Color="#112BB6FE" Offset="1"/>
+                    </RadialGradientBrush>
+                </Path.Fill>
+                <Path.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="5" 
+                                      Direction="270" Color="Black"
+                                      Opacity="0.5"/>
+                </Path.Effect>
+                <Path.Stroke>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="Transparent" Offset="0"/>
+                        <GradientStop Color="#2BB6FE" Offset="0.5"/>
+                        <GradientStop Color="Transparent" Offset="1"/>
+                    </LinearGradientBrush>
+                </Path.Stroke>
+            </Path>
+        </Border>
+
+
+        <TextBlock Text="LOGO XXXX Motion" Foreground="#2BB6FE" 
+                   FontSize="16" Margin="20,0,0,0" FontWeight="Bold"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <TextBlock Text="XX工厂车间实时状况" HorizontalAlignment="Center"
+                   Foreground="White" VerticalAlignment="Bottom" FontSize="22"/>
+
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Run Text="&#xe665;" FontFamily="../Assets/Fonts/#iconfont" Foreground="#2BB6FE"/>
+            <Run Text="2023-11-10  10:32:00" FontSize="18" Foreground="#44FFFFFF"/>
+        </TextBlock>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" TextBlock.Foreground="#2BB6FE"
+                    VerticalAlignment="Center" Margin="0,0,20,0">
+
+            <TextBlock Text="&#xe613;" FontFamily="../Assets/Fonts/#iconfont" 
+                       FontSize="13" VerticalAlignment="Center" />
+
+            <TextBlock Text="车间温度:" VerticalAlignment="Center"/>
+
+            <TextBlock Text="0℃" FontSize="10" VerticalAlignment="Center" />
+
+
+            <TextBlock Text="&#xe605;" FontFamily="../Assets/Fonts/#iconfont"
+                       FontSize="13" VerticalAlignment="Center"/>
+
+            <TextBlock Text="车间湿度:" VerticalAlignment="Center"/>
+
+            <TextBlock Text="60%" FontSize="10" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        </Grid>
     </Grid>
 </Window>
