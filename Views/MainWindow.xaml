@@ -16,6 +16,38 @@
             <GradientStop Color="#08113C" Offset="1"/>
         </RadialGradientBrush>
     </Window.Background>
+
+    <Window.Resources>
+        <Style TargetType="GroupBox">
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="{TemplateBinding Header}" Foreground="#7D96C4"/>
+                                <TextBlock Text="{TemplateBinding Tag}" Foreground="#55FFFFFF"
+                                           VerticalAlignment="Bottom" FontSize="10" Margin="15,0,0,0"/>
+                            </StackPanel>
+
+                            <Border Grid.Row="1" BorderThickness="1" BorderBrush="#447D96C4"
+                                    Margin="0,7,5,5">
+                                <ContentPresenter/>
+                            </Border>
+                            
+                            
+
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -101,9 +133,19 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1.8*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+
+            <UniformGrid Columns="1" Margin="20,15">
+                <GroupBox Header="设备运行状态" Tag="Equipment Running Status"/>
+                <GroupBox Header="人员绩效"/>
+                <GroupBox Header="设备报警信息"/>
+            </UniformGrid>
+            
+            
+            
+            
         </Grid>
     </Grid>
 </Window>
