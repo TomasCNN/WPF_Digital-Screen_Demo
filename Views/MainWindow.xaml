@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Digital_Screen_Demo.Views"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         
         WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen"
@@ -38,7 +39,26 @@
                                     Margin="0,7,5,5">
                                 <ContentPresenter/>
                             </Border>
-                            
+
+                            <!--装饰-->
+                            <Grid Grid.Row="1" Margin="0,7,0,0">
+                                <Border BorderBrush="#447D96C4" BorderThickness="0,0,1,1" Margin="5,5,0,0"/>
+                                <Line X1="0" Y1="0" X2="5" Y2="0" Stroke="#447D96C4" StrokeThickness="1"
+                                  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,0,0"/>
+                                <Line X1="0" Y1="0" X2="0" Y2="5" Stroke="#447D96C4" StrokeThickness="1"
+                                  HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,0"/>
+
+                                <Polyline Points="5,0,0,0,0,5" Stroke="#7D96C4" VerticalAlignment="Top"
+                                      HorizontalAlignment="Left" Grid.Row="1"/>
+                                <Polyline Points="0,0,5,0,5,5" Stroke="#7D96C4" VerticalAlignment="Top"
+                                      HorizontalAlignment="Right" Grid.Row="1" Margin="0,0,5,0"/>
+                                <Polyline Points="0,5,5,5,5,0" Stroke="#7D96C4" VerticalAlignment="Bottom"
+                                      HorizontalAlignment="Right" Grid.Row="1" Margin="0,0,5,5"/>
+                                <Polyline Points="0,0,0,5,5,5" Stroke="#7D96C4" VerticalAlignment="Bottom"
+                                      HorizontalAlignment="Left" Grid.Row="1" Margin="0,0,0,5"/>
+                            </Grid>
+
+                           
                             
 
                         </Grid>
@@ -108,7 +128,7 @@
 
         <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Run Text="&#xe665;" FontFamily="../Assets/Fonts/#iconfont" Foreground="#2BB6FE"/>
-            <Run Text="2023-11-10  10:32:00" FontSize="18" Foreground="#44FFFFFF"/>
+            <Run Text="2023-11-10  10:32:00" FontSize="12" Foreground="#44FFFFFF"/>
         </TextBlock>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" TextBlock.Foreground="#2BB6FE"
@@ -117,7 +137,7 @@
             <TextBlock Text="&#xe613;" FontFamily="../Assets/Fonts/#iconfont" 
                        FontSize="13" VerticalAlignment="Center" />
 
-            <TextBlock Text="车间温度:" VerticalAlignment="Center"/>
+            <TextBlock Text="车间温度" VerticalAlignment="Center"/>
 
             <TextBlock Text="0℃" FontSize="10" VerticalAlignment="Center" />
 
@@ -125,7 +145,7 @@
             <TextBlock Text="&#xe605;" FontFamily="../Assets/Fonts/#iconfont"
                        FontSize="13" VerticalAlignment="Center"/>
 
-            <TextBlock Text="车间湿度:" VerticalAlignment="Center"/>
+            <TextBlock Text="车间湿度" VerticalAlignment="Center"/>
 
             <TextBlock Text="60%" FontSize="10" VerticalAlignment="Center"/>
         </StackPanel>
@@ -138,9 +158,44 @@
             </Grid.ColumnDefinitions>
 
             <UniformGrid Columns="1" Margin="20,15">
-                <GroupBox Header="设备运行状态" Tag="Equipment Running Status"/>
-                <GroupBox Header="人员绩效"/>
-                <GroupBox Header="设备报警信息"/>
+                <GroupBox Header="设备运行状态" Tag="Equipment Running Status">
+                    <GroupBox.Resources>
+                        <Style TargetType="lvc:PieSeries">
+                            <Setter Property="DataLabels" Value="True"/>
+                            <Setter Property="LabelPosition" Value="OutsideSlice"/>
+                            <Setter Property="StrokeThickness" Value="0"/>
+                            <Setter Property="DataLabelsTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <StackPanel TextBlock.Foreground="#44FFFFFF">
+                                            <TextBlock Text="{Binding Point.SeriesView.Values[0],StringFormat={}{0:P1}}"/>
+                                            <TextBlock Text="{Binding Point.SeriesView.Title}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupBox.Resources>
+                    <lvc:PieChart InnerRadius="40" Width="110" Height="110"
+                                  DisableAnimations="True" StartingRotationAngle="0"
+                                  HoverPushOut="0" Series="{Binding StateSeries}">
+                        <!--<lvc:PieChart.Series>
+                            <lvc:PieSeries Values="0.1" Fill="#2BB6FE" StrokeThickness="0" DataLabels="True"
+                                           Title="不良品" LabelPosition="OutsideSlice"/>
+                            <lvc:PieSeries Values="0.2" Fill="red" StrokeThickness="0" DataLabels="True"
+                                           Title="三等品" LabelPosition="OutsideSlice"/>
+                            <lvc:PieSeries Values="0.3" Fill="Yellow" StrokeThickness="0" DataLabels="True"
+                                           Title="二等品" LabelPosition="OutsideSlice"/>
+                            <lvc:PieSeries Values="0.4" Fill="Purple" StrokeThickness="0" DataLabels="True"
+                                           Title="一等品" LabelPosition="OutsideSlice"/>
+                        </lvc:PieChart.Series>-->
+                        
+                        
+                    </lvc:PieChart>
+                </GroupBox>
+                
+                <GroupBox Header="人员绩效" Tag="Workers Performance"/>
+                <GroupBox Header="设备报警信息" Tag="Alarm Information"/>
             </UniformGrid>
             
             
