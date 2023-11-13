@@ -209,9 +209,38 @@
                                        VerticalAlignment="Center" Margin="0,0,10,0"/>
                         </StackPanel>
 
-                        <ItemsControl Grid.Row="1" ItemsSource="{Binding}"
+                        <ItemsControl Grid.Row="1" ItemsSource="{Binding WorkerCompareList}"
                                       TextBlock.Foreground="#44FFFFFF" TextBlock.FontSize="10">
-                            
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="1"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="2" Margin="0,0,20,0" Name="bor"/>
+                                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                        <Border BorderBrush="#992BB6FE" BorderThickness="0,1,0,0"
+                                                VerticalAlignment="Center" Grid.Column="1"/>
+                                        <Polygon Points="4,0,0,7,4,14,8,14,8,0" Fill="#992BB6FE"
+                                                 Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+                                        <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="3,0,0,0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Background="#2BB6FE" HorizontalAlignment="Left" Grid.Column="2"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
                         </ItemsControl>
                         
                     </Grid>

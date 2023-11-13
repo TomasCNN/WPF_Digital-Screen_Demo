@@ -12,8 +12,14 @@ namespace WPF_Digital_Screen_Demo.Models
     public class MainViewModel
     {
         public SeriesCollection StateSeries { get; set; }
+
+        public List<CompareItemModel> WorkerCompareList { get; set; }
+
+        Random random = new Random();
+
         public MainViewModel()
         {
+            #region 环状图数据初始化
             StateSeries = new SeriesCollection();
             StateSeries.Add(new PieSeries()
             {
@@ -40,10 +46,24 @@ namespace WPF_Digital_Screen_Demo.Models
             {
                 Title = "不良品",
                 Values = new ChartValues<double>(new double[] { 0.1 }),
-                Fill = new SolidColorBrush(Color.FromArgb(255, 254, 0, 0))
-
-                
+                Fill = new SolidColorBrush(Color.FromArgb(255, 254, 0, 0))               
             });
+
+            #endregion
+
+            #region 人员绩效初始化
+            string[] Empolys = new string[] { "张三", "李四", "王五", "侯六", "苟七" };
+            WorkerCompareList = new List<CompareItemModel>();
+            foreach (var e in Empolys)
+            {
+                WorkerCompareList.Add(new CompareItemModel()
+                {
+                    Name = e,
+                    PlanValue = random.Next(0, 150),
+                    FinishedValue=random.Next(101, 200)
+                }); 
+            }
+            #endregion
         }
     }
 }
