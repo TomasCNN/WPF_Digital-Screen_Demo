@@ -15,6 +15,8 @@ namespace WPF_Digital_Screen_Demo.Models
 
         public List<CompareItemModel> WorkerCompareList { get; set; }
 
+        public List<string>Alarms { get; set; }
+
         Random random = new Random();
 
         public MainViewModel()
@@ -64,6 +66,17 @@ namespace WPF_Digital_Screen_Demo.Models
                 }); 
             }
             #endregion
+
+            #region 报警信息初始化
+            Alarms = new List<string>();
+            Alarms.Add("【H338->厂务冷却水入水温度[℃]】 34 -> 10:00");
+            Alarms.Add("【H338->厂务冷却水入水温度[℃]】 34 -> 10:00");
+            Alarms.Add("【H338->厂务冷却水入水温度[℃]】 34 -> 10:00");
+            Alarms.Add("【H338->厂务冷却水入水温度[℃]】 34 -> 10:00");
+            Alarms.Add("【H338->厂务冷却水入水温度[℃]】 34 -> 10:00");
+            Alarms.Add("【H338->厂务冷却水入水温度[℃]】 34 -> 10:00");
+            #endregion
+
         }
     }
 }
