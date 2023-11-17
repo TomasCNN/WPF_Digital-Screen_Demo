@@ -17,6 +17,10 @@ namespace WPF_Digital_Screen_Demo.Models
 
         public List<string>Alarms { get; set; }
 
+        public string CurrentYeild { get; set; } = "100860";
+
+        public int FinishRate { get; set; } = 80;
+
         Random random = new Random();
 
         public MainViewModel()
@@ -76,6 +80,8 @@ namespace WPF_Digital_Screen_Demo.Models
             Alarms.Add("【H338->厂务冷却水入水温度[℃]】 34 -> 10:00");
             Alarms.Add("【H338->厂务冷却水入水温度[℃]】 34 -> 10:00");
             #endregion
+
+
 
         }
     }

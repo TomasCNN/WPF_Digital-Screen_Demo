@@ -302,13 +302,51 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Foreground="#DD2BB6FE" FontSize="17" VerticalAlignment="Top">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Foreground="#DD2BB6FE" FontSize="17" VerticalAlignment="Top">
                     <Run Text="当日产量"/>
                     <Run Text="&#xe648;" FontFamily="../Assets/Fonts/#iconfont"/>
-                </TextBlock>
+                    </TextBlock>
+                    <ItemsControl VerticalAlignment="Center" TextBlock.Foreground="White"
+                              TextBlock.FontSize="30" Margin="0,15,0,0"
+                              ItemsSource="{Binding CurrentYeild}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Padding="3,10" Background="#222BB6FE"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,0"
+                                       Width="22" TextAlignment="Center"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0">
+                        <TextBlock Text="计划产量" Foreground="#AA999999" FontSize="12" Margin="0,5"/>
+                        <TextBlock Text="196000" Foreground="#CC2BB6FE" FontSize="20"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="完成度" Foreground="#AA999999" FontSize="12" Margin="0,5"/>
+                        <TextBlock Text="{Binding FinishRate,StringFormat=\{0\}%}" Foreground="PaleVioletRed" 
+                                   FontSize="18"/>
+                    </StackPanel>
+                    
+                    
+                </Grid>
             </Grid>
-            
-            
         </Grid>
     </Grid>
 </Window>
