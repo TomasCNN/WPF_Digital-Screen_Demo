@@ -9,6 +9,7 @@ namespace WPF_Digital_Screen_Demo.Models
     public class CompareItemModel
     {
         public string Name { get; set; }
+
         public double PlanValue { get; set; }
 
         public double FinishedValue { get; set; }

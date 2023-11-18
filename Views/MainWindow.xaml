@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Digital_Screen_Demo.Views"
-        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
+        xmlns:b="clr-namespace:WPF_Digital_Screen_Demo.Base"
+        xmlns:zxc="clr-namespace:WPF_Digital_Screen_Demo.Controls"
         mc:Ignorable="d"
         
         WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen"
@@ -57,10 +59,6 @@
                                 <Polyline Points="0,0,0,5,5,5" Stroke="#7D96C4" VerticalAlignment="Bottom"
                                       HorizontalAlignment="Left" Grid.Row="1" Margin="0,0,0,5"/>
                             </Grid>
-
-                           
-                            
-
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -128,7 +126,7 @@
 
         <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Run Text="&#xe665;" FontFamily="../Assets/Fonts/#iconfont" Foreground="#2BB6FE"/>
-            <Run Text="2023-11-10  10:32:00" FontSize="12" Foreground="#44FFFFFF"/>
+            <Run Text="2023-11-10  10:32:00" FontSize="13" Foreground="#44FFFFFF"/>
         </TextBlock>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" TextBlock.Foreground="#2BB6FE"
@@ -234,23 +232,127 @@
 
                                         <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="3,0,0,0">
                                             <StackPanel Orientation="Horizontal">
-                                                <Border Background="#2BB6FE" HorizontalAlignment="Left" Grid.Column="2"/>
+                                                <Border Background="#2BB6FE" Height="5"
+                                                        HorizontalAlignment="Left" Grid.Column="2">
+                                                    <Border.Width>
+                                                        <MultiBinding>
+                                                            <MultiBinding.Converter>
+                                                                <b:CompareValueConverter/>
+                                                            </MultiBinding.Converter>
+                                                            <Binding Path="PlanValue"/>
+                                                            <Binding ElementName="bor" Path="ActualWidth"/>
+                                                        </MultiBinding>
+                                                    </Border.Width>
+                                                </Border>
+                                                <TextBlock Text="{Binding PlanValue}" FontSize="8"
+                                                           VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Background="IndianRed" Height="5"
+                                                        HorizontalAlignment="Left" Grid.Column="2">
+                                                    <Border.Width>
+                                                        <MultiBinding>
+                                                            <MultiBinding.Converter>
+                                                                <b:CompareValueConverter/>
+                                                            </MultiBinding.Converter>
+                                                            <Binding Path="FinishedValue"/>
+                                                            <Binding ElementName="bor" Path="ActualWidth"/>
+                                                        </MultiBinding>
+                                                    </Border.Width>
+                                                </Border>
+                                                <TextBlock Text="{Binding FinishedValue}" FontSize="8"
+                                                           VerticalAlignment="Center" Margin="5,0,0,0"/>
                                             </StackPanel>
                                         </StackPanel>
-                                        
                                     </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderBrush="#44FFFFFF" BorderThickness="0,0,0,1" VerticalAlignment="Top"
+                                    Grid.Column="1" Margin="0,5,0,0"/>
+                            <UniformGrid Rows="1" TextBlock.Foreground="#33FFFFFF" Grid.Column="1"
+                                         TextBlock.FontSize="9" VerticalAlignment="Center">
+                                <TextBlock Text="0"/>
+                                <TextBlock Text="40"/>
+                                <TextBlock Text="80"/>
+                                <TextBlock Text="120"/>
+                                <TextBlock Text="160"/>
+                                <TextBlock Text="200"/>
+                                <TextBlock Text="240"/>
+                            </UniformGrid>
+                        </Grid>
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="设备报警信息" Tag="Alarm Information"/>
+                <GroupBox Header="设备报警信息" Tag="Alarm Information">
+                    <ItemsControl ItemsSource="{Binding Alarms}" 
+                                  TextBlock.Foreground="#44FFFFFF"
+                                  TextBlock.LineHeight="23"
+                                  Margin="3,5,5,5">
+                    </ItemsControl>
+                </GroupBox>
             </UniformGrid>
-            
-            
-            
-            
+
+            <Grid Grid.Column="1" Margin="0,40,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="110"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Foreground="#DD2BB6FE" FontSize="17" VerticalAlignment="Top">
+                    <Run Text="当日产量"/>
+                    <Run Text="&#xe648;" FontFamily="../Assets/Fonts/#iconfont"/>
+                    </TextBlock>
+                    <ItemsControl VerticalAlignment="Center" TextBlock.Foreground="White"
+                              TextBlock.FontSize="30" Margin="0,15,0,0"
+                              ItemsSource="{Binding CurrentYeild}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Padding="3,10" Background="#222BB6FE"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,0"
+                                       Width="22" TextAlignment="Center"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0">
+                        <TextBlock Text="计划产量" Foreground="#AA999999" FontSize="12" Margin="0,5"/>
+                        <TextBlock Text="196000" Foreground="#CC2BB6FE" FontSize="20"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="完成度" Foreground="#AA999999" FontSize="12" Margin="0,5"/>
+                        <TextBlock Text="{Binding FinishRate,StringFormat=\{0\}%}" Foreground="PaleVioletRed" 
+                                   FontSize="18"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="3" HorizontalAlignment="Center">
+                        <TextBlock Text="A产品良品率" Foreground="#AA999999" FontSize="11"/>
+                        <zxc:CircularProgressBar Value="0.75" Foreground="White"
+                                                 Width="55" Height="55" Margin="0,18,0,0"/>
+                    </StackPanel>
+                    
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "6072853",
+      "name": "admin_Integration se",
+      "font_class": "admin_Integrationse",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "15667077",
+      "name": "生产量统计",
+      "font_class": "shengchanliangtongji",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
+      "icon_id": "28321131",
+      "name": "效率",
+      "font_class": "xiaoshuai",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
       "icon_id": "77110",
       "name": "时间",
       "font_class": "shijian",
