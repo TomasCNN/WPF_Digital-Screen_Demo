@@ -382,16 +382,44 @@
 
                         <lvc:CartesianChart Grid.Row="1" DisableAnimations="True">
                             <lvc:CartesianChart.Series>
-                                <lvc:LineSeries Values="" LineSmoothness="0" Stroke="IndianRed" Fill="Transparent"/>
-                                <lvc:LineSeries Values="" LineSmoothness="0" Stroke="#2BB6FE">
-                                    
+                                <lvc:LineSeries Values="{Binding YeildValue1}" LineSmoothness="0" Stroke="IndianRed"
+                                                Fill="Transparent"/>
+                                <lvc:LineSeries Values="{Binding YeildValue2}" LineSmoothness="0" Stroke="#2BB6FE">
+                                    <lvc:LineSeries.Fill>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Color="#882BB6FE" Offset="0"/>
+                                            <GradientStop Color="#442BB6FE" Offset="0.2"/>
+                                            <GradientStop Color="#112BB6FE" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </lvc:LineSeries.Fill>
                                 </lvc:LineSeries>
                             </lvc:CartesianChart.Series>
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis Labels="01/01,02/01,03/02,04/02,05/02,06/02,08/02,09/02,10/02,11/02,12/02"
+                                          Foreground="#33FFFFFF">
+                                    <lvc:Axis.Separator>
+                                        <lvc:Separator Step="1" StrokeThickness="0"/>
+                                    </lvc:Axis.Separator>
+                                </lvc:Axis>
+                            </lvc:CartesianChart.AxisX>
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis MinValue="0" MaxValue="380" Foreground="#33FFFFFF">
+                                    <lvc:Axis.Separator>
+                                        <lvc:Separator Step="75" Stroke="#10FFFFFF"/>
+                                    </lvc:Axis.Separator>
+                                </lvc:Axis>
+                            </lvc:CartesianChart.AxisY>
                         </lvc:CartesianChart>
-                        
                     </Grid>
                 </GroupBox>
-
+                <GroupBox Grid.Row="2" Header="机器产量统计" Tag="Production">
+                    <lvc:CartesianChart Margin="15,10,15,0" DisableAnimations="True">
+                        <lvc:CartesianChart.Series>
+                            <lvc:ColumnSeries Values="375,360,100,50,110,120,110,360,350,100,50,80,120,110,360,350,100,50,80"
+                                              MaxColumnWidth="15" Fill="#AA2BB6FE"/>
+                        </lvc:CartesianChart.Series>
+                    </lvc:CartesianChart>
+                </GroupBox>
             </Grid>
         </Grid>
     </Grid>
