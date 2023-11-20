@@ -348,10 +348,50 @@
                     <StackPanel Grid.Column="3" HorizontalAlignment="Center">
                         <TextBlock Text="A产品良品率" Foreground="#AA999999" FontSize="11"/>
                         <zxc:CircularProgressBar Value="0.75" Foreground="White"
-                                                 Width="55" Height="55" Margin="0,18,0,0"/>
+                                                 Width="55" Height="55" Margin="0,14,0,0"/>
                     </StackPanel>
                     
+                    <StackPanel Grid.Column="4" HorizontalAlignment="Center">
+                        <TextBlock Text="B产品良品率" Foreground="#AA999999" FontSize="11"/>
+                        <zxc:CircularProgressBar Value="0.88" Foreground="White"
+                                                 Width="55" Height="55" Margin="0,14,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="5" HorizontalAlignment="Center">
+                        <TextBlock Text="C产品良品率" Foreground="#AA999999" FontSize="11"/>
+                        <zxc:CircularProgressBar Value="0.85" Foreground="White"
+                                                 Width="55" Height="55" Margin="0,14,0,0"/>
+                    </StackPanel>
                 </Grid>
+
+                <GroupBox Header="生产量/良品率统计" Tag="Yield Statistics" Grid.Row="1">
+                    <Grid Margin="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
+                                    HorizontalAlignment="Left">
+                            <Border Width="8" Height="8" Background="#2BB6FE" Margin="3,0"/>
+                            <TextBlock Text="产量" Foreground="#44FFFFFF" FontSize="9"
+                                       VerticalAlignment="Center" Margin="0,0,10,0"/>
+                            <Border Width="8" Height="8" Background="IndianRed" Margin="3,0"/>
+                            <TextBlock Text="良品率" Foreground="#44FFFFFF" FontSize="9"
+                                       VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        </StackPanel>
+
+                        <lvc:CartesianChart Grid.Row="1" DisableAnimations="True">
+                            <lvc:CartesianChart.Series>
+                                <lvc:LineSeries Values="" LineSmoothness="0" Stroke="IndianRed" Fill="Transparent"/>
+                                <lvc:LineSeries Values="" LineSmoothness="0" Stroke="#2BB6FE">
+                                    
+                                </lvc:LineSeries>
+                            </lvc:CartesianChart.Series>
+                        </lvc:CartesianChart>
+                        
+                    </Grid>
+                </GroupBox>
+
             </Grid>
         </Grid>
     </Grid>
