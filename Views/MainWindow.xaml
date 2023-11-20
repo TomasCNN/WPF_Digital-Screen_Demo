@@ -348,9 +348,20 @@
                     <StackPanel Grid.Column="3" HorizontalAlignment="Center">
                         <TextBlock Text="A产品良品率" Foreground="#AA999999" FontSize="11"/>
                         <zxc:CircularProgressBar Value="0.75" Foreground="White"
-                                                 Width="55" Height="55" Margin="0,18,0,0"/>
+                                                 Width="55" Height="55" Margin="0,14,0,0"/>
                     </StackPanel>
                     
+                    <StackPanel Grid.Column="4" HorizontalAlignment="Center">
+                        <TextBlock Text="B产品良品率" Foreground="#AA999999" FontSize="11"/>
+                        <zxc:CircularProgressBar Value="0.88" Foreground="White"
+                                                 Width="55" Height="55" Margin="0,14,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="5" HorizontalAlignment="Center">
+                        <TextBlock Text="C产品良品率" Foreground="#AA999999" FontSize="11"/>
+                        <zxc:CircularProgressBar Value="0.85" Foreground="White"
+                                                 Width="55" Height="55" Margin="0,14,0,0"/>
+                    </StackPanel>
                 </Grid>
             </Grid>
         </Grid>
