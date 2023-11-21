@@ -21,11 +21,10 @@ namespace WPF_Digital_Screen_Demo.Controls
     /// </summary>
     public partial class CircularProgressBar : UserControl
     {
-        public Brush BackColor
-        {
-            get { return (Brush)GetValue(BackColorProperty); }
-            set { SetValue(BackColorProperty, value); }
-        }
+        public Brush BackColor()
+        { return (Brush)GetValue(BackColorProperty); }
+        public void SetBackColor(Brush value)
+        { SetValue(BackColorProperty, value); }
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty BackColorProperty =
@@ -48,17 +47,17 @@ namespace WPF_Digital_Screen_Demo.Controls
             (d as CircularProgressBar).UpdateValue();
         }
 
-        public string Title { get; set; }
+        //public string Title { get; set; }
 
-        //public int Title
-        //{
-        //    get { return (int)GetValue(TitleProperty); }
-        //    set { SetValue(TitleProperty, value); }
-        //}
+        public string Title
+        {
+            get { return (string)GetValue(TitleProperty); }
+            set { SetValue(TitleProperty, value); }
+        }
 
-        //// Using a DependencyProperty as the backing store for Title.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty TitleProperty =
-        //    DependencyProperty.Register("Title", typeof(int), typeof(CircularProgressBar), new PropertyMetadata(0));
+        // Using a DependencyProperty as the backing store for Title.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TitleProperty =
+            DependencyProperty.Register("Title", typeof(string), typeof(CircularProgressBar), new PropertyMetadata(" "));
 
         public CircularProgressBar()
         {

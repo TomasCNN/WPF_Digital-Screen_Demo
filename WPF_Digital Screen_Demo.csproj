@@ -83,6 +83,7 @@
     <Compile Include="Controls\CircularProgressBar.xaml.cs">
       <DependentUpon>CircularProgressBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\BadItemModel.cs" />
     <Compile Include="Models\CompareItemModel.cs" />
     <Compile Include="Models\MainViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

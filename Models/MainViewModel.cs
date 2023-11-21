@@ -26,6 +26,8 @@ namespace WPF_Digital_Screen_Demo.Models
 
         public int FinishRate { get; set; } = 80;
 
+        public List<BadItemModel> BadScatter {get; set;}
+
         Random random = new Random();
 
         public MainViewModel()
@@ -93,6 +95,15 @@ namespace WPF_Digital_Screen_Demo.Models
             {
                 YeildValue1.Add(new ObservableValue(random.Next(20, 380)));
                 YeildValue2.Add(new ObservableValue(random.Next(20, 300)));
+            }
+            #endregion
+
+            #region 不良分布初始化
+            BadScatter = new List<BadItemModel>();
+            string[] BadNames = new string[] { "缺角A","缺角B","缺角C","缺角D","缺角E","缺角F","缺角G","缺角H" };
+            for(int i = 0;i < BadNames.Length;i++)
+            {
+                BadScatter.Add(new BadItemModel() { Title = BadNames[i], Size = 180 - 20 * i, Value = 0.9 - 0.1 * i });
             }
             #endregion
 

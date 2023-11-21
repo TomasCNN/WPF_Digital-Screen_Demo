@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Name="layout" Height="{Binding RelativeSource={RelativeSource Self},Path=ActualWidth}">
         <Ellipse StrokeThickness="8" 
-                 Stroke="{Binding BackColor,ElementName=root}" Name="backEllipse"/>
+                 Stroke="{Binding BackColor,ElementName=root,XPath=BackColor}" Name="backEllipse"/>
         <Path Data="M75.001 5 A70 70 0 1 1 75 5" StrokeThickness="6" Stroke="#CC2BB6FE" Name="path"/>
         
         <Viewbox Margin="14">
