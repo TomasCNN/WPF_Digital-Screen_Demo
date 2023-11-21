@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 using LiveCharts.Wpf;
 using System.Windows.Media;
 using LiveCharts.Defaults;
+using System.Threading;
+using System.Net.Sockets;
+using WPF_Digital_Screen_Demo.Base;
 
 namespace WPF_Digital_Screen_Demo.Models
 {
-    public class MainViewModel
+    public class MainViewModel: NotifyBase
     {
         public SeriesCollection StateSeries { get; set; }
 
@@ -20,13 +23,29 @@ namespace WPF_Digital_Screen_Demo.Models
 
         public List<CompareItemModel> WorkerCompareList { get; set; }
 
+        public List<CompareItemModel> QualityList { get; set; }
+
         public List<string>Alarms { get; set; }
 
-        public string CurrentYeild { get; set; } = "100860";
+        //public string CurrentYeild { get; set; } = "100860";
+
+        private string _currentYeild;
+
+        public string CurrentYeild
+        {
+            get { return _currentYeild; }
+            set { SetProperty(ref _currentYeild, value); }
+        }
 
         public int FinishRate { get; set; } = 80;
 
+        public List<BadItemModel> BadScatter {get; set;}
+
         Random random = new Random();
+
+        CancellationTokenSource cts = new CancellationTokenSource();
+
+        Task task = null;
 
         public MainViewModel()
         {
@@ -96,6 +115,52 @@ namespace WPF_Digital_Screen_Demo.Models
             }
             #endregion
 
+            #region 不良分布初始化
+            BadScatter = new List<BadItemModel>();
+            string[] BadNames = new string[] { "缺角A","缺角B","缺角C","缺角D","缺角E","缺角F","缺角G","缺角H" };
+            for(int i = 0;i < BadNames.Length;i++)
+            {
+                BadScatter.Add(new BadItemModel() { Title = BadNames[i], Size = 180 - 20 * i, Value = 0.9 - 0.1 * i });
+            }
+            #endregion
+
+            #region 质量控制
+            string[] quality = new string[] { "机床-1", "机床-2", "机床-3", "机床-4", "机床-5", 
+                "机床-6", "机床-7", "机床-8", "机床-9", "机床-10" };
+            QualityList = new List<CompareItemModel>();
+            foreach (var q in quality)
+            {
+                QualityList.Add(new CompareItemModel()
+                {
+                    Name = q,
+                    PlanValue = random.Next(0, 150),
+                    FinishedValue = random.Next(101, 200)
+                });
+            }
+            #endregion
+
+            #region Modbus实时通讯初始化
+            TcpClient tcpClient = new TcpClient();
+            tcpClient.Connect("127.0.0.1", 502);
+            Modbus.Device.ModbusIpMaster master = Modbus.Device.ModbusIpMaster.CreateIp(tcpClient);
+            task = Task.Run(() =>
+            { 
+                while (!cts.IsCancellationRequested) 
+                {
+                    // await Task.Delay(1000);
+                    // 获取现场的数据
+                    ushort[] values = master.ReadHoldingRegisters(1, 0, 1); 
+                    CurrentYeild = values[0].ToString("000000");
+                }
+            },cts.Token);
         }
+
+        public void Dispose()
+        {
+            cts.Cancel();
+            Task.WaitAny(task);
+        }
+        #endregion
+
     }
 }

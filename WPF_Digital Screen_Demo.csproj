@@ -45,6 +45,21 @@
     <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="NModbus, Version=3.0.81.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NModbus.3.0.81\lib\net46\NModbus.dll</HintPath>
+    </Reference>
+    <Reference Include="NModbus.Serial, Version=3.0.81.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NModbus.Serial.3.0.81\lib\net46\NModbus.Serial.dll</HintPath>
+    </Reference>
+    <Reference Include="NModbus.SerialPortStream, Version=3.0.81.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NModbus.SerialPortStream.3.0.81\lib\net46\NModbus.SerialPortStream.dll</HintPath>
+    </Reference>
+    <Reference Include="NModbus4, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NModbus4.2.1.0\lib\net40\NModbus4.dll</HintPath>
+    </Reference>
+    <Reference Include="RJCP.SerialPortStream, Version=2.2.0.0, Culture=neutral, PublicKeyToken=5f5e7b70c6a74deb, processorArchitecture=MSIL">
+      <HintPath>packages\SerialPortStream.2.2.0\lib\net45\RJCP.SerialPortStream.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -80,9 +95,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Base\CompareValueConverter.cs" />
+    <Compile Include="Base\NotifyBase.cs" />
     <Compile Include="Controls\CircularProgressBar.xaml.cs">
       <DependentUpon>CircularProgressBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\BadItemModel.cs" />
     <Compile Include="Models\CompareItemModel.cs" />
     <Compile Include="Models\MainViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

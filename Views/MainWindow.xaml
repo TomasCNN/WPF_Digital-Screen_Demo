@@ -347,19 +347,19 @@
 
                     <StackPanel Grid.Column="3" HorizontalAlignment="Center">
                         <TextBlock Text="A产品良品率" Foreground="#AA999999" FontSize="11"/>
-                        <zxc:CircularProgressBar Value="0.75" Foreground="White"
+                        <zxc:CircularProgressBar Value="0.75" Foreground="White" BackColor ="#11FFFFFF"
                                                  Width="55" Height="55" Margin="0,14,0,0"/>
                     </StackPanel>
                     
                     <StackPanel Grid.Column="4" HorizontalAlignment="Center">
                         <TextBlock Text="B产品良品率" Foreground="#AA999999" FontSize="11"/>
-                        <zxc:CircularProgressBar Value="0.88" Foreground="White"
+                        <zxc:CircularProgressBar Value="0.88" Foreground="White" BackColor ="#11FFFFFF"
                                                  Width="55" Height="55" Margin="0,14,0,0"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="5" HorizontalAlignment="Center">
                         <TextBlock Text="C产品良品率" Foreground="#AA999999" FontSize="11"/>
-                        <zxc:CircularProgressBar Value="0.85" Foreground="White"
+                        <zxc:CircularProgressBar Value="0.85" Foreground="White" BackColor ="#11FFFFFF"
                                                  Width="55" Height="55" Margin="0,14,0,0"/>
                     </StackPanel>
                 </Grid>
@@ -412,15 +412,162 @@
                         </lvc:CartesianChart>
                     </Grid>
                 </GroupBox>
+
                 <GroupBox Grid.Row="2" Header="机器产量统计" Tag="Production">
                     <lvc:CartesianChart Margin="15,10,15,0" DisableAnimations="True">
                         <lvc:CartesianChart.Series>
-                            <lvc:ColumnSeries Values="375,360,100,50,110,120,110,360,350,100,50,80,120,110,360,350,100,50,80"
+                            <lvc:ColumnSeries Values="375,360,100,50,110,120,110,360,350,
+                                              100,50,80,120,110,360,350,100,50,80" 
                                               MaxColumnWidth="15" Fill="#AA2BB6FE"/>
                         </lvc:CartesianChart.Series>
+
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Labels="机床1,机床2,机床3,机床4,机床5,机床6,机床7,机床8,机床9,机床10,
+                                      机床11,机床12,机床13,机床14,机床15,机床16,机床17,机床18,机床19," 
+                                      Foreground="#33FFFFFF" LabelsRotation="0" FontSize="8">
+                                <lvc:Axis.Separator>
+                                    <lvc:Separator Step="2" StrokeThickness="0"/>
+                                </lvc:Axis.Separator>
+                            </lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis MinValue="0" MaxValue="420" Foreground="#33FFFFFF">
+                                <lvc:Axis.Separator>
+                                    <lvc:Separator Step="84" Stroke="#10FFFFFF"/>
+                                </lvc:Axis.Separator>
+                            </lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
                     </lvc:CartesianChart>
                 </GroupBox>
             </Grid>
+
+            <Grid Grid.Column="2" Margin="20,15">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="1.2*"/>
+                </Grid.RowDefinitions>
+
+                <GroupBox Header="不良指标分页" Tag="Poor Indicators">
+                    <ItemsControl ItemsSource="{Binding BadScatter}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Grid/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <zxc:CircularProgressBar Value="{Binding Value}"
+                                                         Width="{Binding Size}"
+                                                         Height="{Binding Size}"
+                                                         Title="{Binding Title}"
+                                                         Foreground="Transparent"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </GroupBox>
+
+                <GroupBox Header="质量控制" Tag="Quality Control" Grid.Row="1">
+                    <Grid Margin="5,3,10,3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                            <Border Width="8" Height="8" Background="#2BB6FE" Margin="3,0"/>
+                            <TextBlock Text="计划" Foreground="#44FFFFFF" FontSize="9"
+                                       VerticalAlignment="Center" Margin="0,0,10,0"/>
+                            <Border Width="8" Height="8" Background="IndianRed" Margin="3,0"/>
+                            <TextBlock Text="实际完成" Foreground="#44FFFFFF" FontSize="9"
+                                       VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        </StackPanel>
+
+                        <ItemsControl Grid.Row="1" ItemsSource="{Binding QualityList}"
+                                      TextBlock.Foreground="#44FFFFFF" TextBlock.FontSize="10">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="1"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="2" Margin="0,0,20,0" Name="bor"/>
+                                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                        <Border BorderBrush="#992BB6FE" BorderThickness="0,1,0,0"
+                                                VerticalAlignment="Center" Grid.Column="1"/>
+                                        <Polygon Points="4,0,0,7,4,14,8,14,8,0" Fill="#992BB6FE"
+                                                 Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+                                        <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="3,0,0,0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Background="#2BB6FE" Height="5"
+                                                        HorizontalAlignment="Left" Grid.Column="2">
+                                                    <Border.Width>
+                                                        <MultiBinding>
+                                                            <MultiBinding.Converter>
+                                                                <b:CompareValueConverter/>
+                                                            </MultiBinding.Converter>
+                                                            <Binding Path="PlanValue"/>
+                                                            <Binding ElementName="bor" Path="ActualWidth"/>
+                                                        </MultiBinding>
+                                                    </Border.Width>
+                                                </Border>
+                                                <TextBlock Text="{Binding PlanValue}" FontSize="8"
+                                                           VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Background="IndianRed" Height="5"
+                                                        HorizontalAlignment="Left" Grid.Column="2">
+                                                    <Border.Width>
+                                                        <MultiBinding>
+                                                            <MultiBinding.Converter>
+                                                                <b:CompareValueConverter/>
+                                                            </MultiBinding.Converter>
+                                                            <Binding Path="FinishedValue"/>
+                                                            <Binding ElementName="bor" Path="ActualWidth"/>
+                                                        </MultiBinding>
+                                                    </Border.Width>
+                                                </Border>
+                                                <TextBlock Text="{Binding FinishedValue}" FontSize="8"
+                                                           VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderBrush="#44FFFFFF" BorderThickness="0,0,0,1" VerticalAlignment="Top"
+                                    Grid.Column="1" Margin="0,5,0,0"/>
+                            <UniformGrid Rows="1" TextBlock.Foreground="#33FFFFFF" Grid.Column="1"
+                                         TextBlock.FontSize="9" VerticalAlignment="Center">
+                                <TextBlock Text="0"/>
+                                <TextBlock Text="40"/>
+                                <TextBlock Text="80"/>
+                                <TextBlock Text="120"/>
+                                <TextBlock Text="160"/>
+                                <TextBlock Text="200"/>
+                                <TextBlock Text="240"/>
+                            </UniformGrid>
+                        </Grid>
+                    </Grid>
+                </GroupBox>
+                
+            </Grid>
+            
         </Grid>
     </Grid>
 </Window>
